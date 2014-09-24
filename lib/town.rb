@@ -6,6 +6,10 @@ class Town
     self.shops=[]
   end
 
+  def run
+    shops.first.run
+  end
+
   def to_s
     "name: #{name}\npopulation: #{population}\nshops: #{shops}"
   end
