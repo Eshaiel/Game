@@ -1,23 +1,28 @@
 class Shop
   attr_accessor :name
 
+  def initialize shop_options
+    self.name = shop_options[:name]
+    @responses = shop_options[:responses]
+    @dialog = shop_options[:dialog]
+  end
+
   def run
+    puts "Welcome to #{name}"
     shop_loop while @input!=0
   end
 
   def shop_loop
-    puts "1) spend dosh\n2) talk to Shopkeep\n3) kill Shopkeep\n4) done"
+    #puts "1) spend dosh\n2) talk to Shopkeep\n3) kill Shopkeep\n4) done"
+    puts @dialog.join("\n")
     @input = gets
     @input = @input.to_i
-
-    if @input == 1
-      puts "Dosh expended"
-    elsif @input == 2
-      puts "Buy stuff or fuck off"
-    elsif @input == 3
-      puts "Ugh I'm dead and stuff"
+    chosen_response = @responses[@input-1]
+    if chosen_response
+      puts chosen_response
     else
-      puts "Fine, fuck off then"
+      puts @responses.last
+      @input=0
     end
   end
 end
