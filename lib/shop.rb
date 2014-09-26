@@ -2,7 +2,7 @@ class Shop
   attr_accessor :name
 
   def initialize shop_options
-    self.name =shop_options[:name]
+    self.name = shop_options[:name]
     @responses = shop_options[:responses]
     @dialog = shop_options[:dialog]
   end
@@ -17,8 +17,11 @@ class Shop
     puts @dialog.join("\n")
     @input = gets
     @input = @input.to_i
-    puts @responses[@input-1] || @responses.last
-    if @input > 3 || @input < 0
+    chosen_response = @responses[@input-1]
+    if chosen_response
+      puts chosen_response
+    else
+      puts @responses.last
       @input=0
     end
   end
